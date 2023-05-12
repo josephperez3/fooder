@@ -6,17 +6,17 @@ const dotEnv = require("dotenv").config();
 const cors = require("cors");
 app.use(
   cors({
-    credentials: true,
-    // origin: "https://fooderweb.netlify.app",
-    origin: process.env.CLIENT_ENDPOINT,
+    origin: function (origin, callback) {
+      return callback(null, true);
+    },
   })
 );
 const io = require("socket.io")(server, {
   cors: {
-    credentials: true,
+    // credentials: true,
     // origin: "https://fooderweb.netlify.app",
-    origin: process.env.CLIENT_ENDPOINT,
-    methods: ["GET", "POST"],
+    origin: "*",
+    // methods: ["GET", "POST"],
     // pingTimeout: 60000,
     // pingInterval: 120000,
   },
