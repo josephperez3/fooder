@@ -127,11 +127,11 @@ io.on("connection", (socket) => {
     const roomId = findRoomId(socket.rooms);
     const userId = socket.id;
     const hasMatch = rooms.acceptRestaurant(roomId, userId, restaurantId);
-    if (hasMatch) {
-      console.log(`emit MATCHES_FOUND`);
-      // socket.emit("MATCHES_FOUND", rooms.getMatchedRestaurants(roomId));
-      io.in(roomId).emit("MATCHES_FOUND", rooms.getMatchedRestaurants(roomId));
-    }
+    // if (hasMatch) {
+    // console.log(`emit MATCHES_FOUND`);
+    // socket.emit("MATCHES_FOUND", rooms.getMatchedRestaurants(roomId));
+    io.in(roomId).emit("MATCHES_FOUND", rooms.getMatchedRestaurants(roomId));
+    // }
   });
 
   // user disconnects from room
